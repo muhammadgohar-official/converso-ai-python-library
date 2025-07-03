@@ -31,25 +31,29 @@ from converso_ai import ConversoAI
 client = ConversoAI(api_key="YOUR_API_KEY")
 ```
 
-# For Get Models
+### For Get Models
 ```python
+# Get Converso AI All Models
 models = client.get_models()
 print(models)
 ```
-# For Get tokens
+### For Get tokens
 ```python
+# Get Remaining Tokens
 tokens = client.get_tokens()
 print(tokens)
 ```
 
-# For Generate image
+### For Generate image
 ```python
+# Generate Image
 image_response = client.generate_image(prompt="A futuristic cityscape", model="model-id")
 print(image_response)
 ```
 
-# For Get all generated images
+### For Get all generated images
 ```python
+# Get All Generated Images
 images = client.get_generated_images()
 print(images)
 ```
