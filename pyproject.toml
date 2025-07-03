@@ -15,5 +15,5 @@ dependencies = [
 ]
 
 [project.urls]
-API Docs = "https://conversoai.stylefort.store"
+Converso_AI-API_Docs = "https://conversoai.stylefort.store"
 Repository = "https://github.com/muhammadgohar-official/converso-ai-python-library"
