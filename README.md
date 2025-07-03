@@ -66,7 +66,7 @@ print(images)
 converso_ai/
 ├── converso_ai/
 │   └── __init__.py        # Library code
-├── setup.py               # Package config
+├── pyproject.toml         # Package config
 ├── requirements.txt       # Dependencies
 ├── README.md              # This file
 └── LICENSE                # License file (optional)
