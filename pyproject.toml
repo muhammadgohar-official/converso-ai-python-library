@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "converso-ai"
-version = "0.1.0"
+version = "1.0.1"
 description = "Python client for Converso AI API"
 readme = "README.md"
 license = { text = "MIT" }
@@ -15,5 +15,5 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/muhammadgohar-official/converso-ai-python-library"
+Converso AI - API Docs = "https://conversoai.stylefort.store"
 Repository = "https://github.com/muhammadgohar-official/converso-ai-python-library"
