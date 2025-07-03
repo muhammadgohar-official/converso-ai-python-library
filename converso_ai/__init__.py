@@ -71,6 +71,7 @@ class ConversoAI:
         url = f"{self.BASE_URL}/v1/images/generations"
         payload = {"prompt": prompt, "model": model}
         headers = self._get_headers()
+        print(f"Generating image...")
         response = requests.post(url, json=payload, headers=headers)
         return self._handle_response(response)
 
