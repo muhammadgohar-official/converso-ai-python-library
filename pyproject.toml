@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "converso-ai"
+version = "0.1.0"
+description = "Python client for Converso AI API"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Muhammad Gohar", email = "mg03164525711@gmail.com" }]
+requires-python = ">=3.7"
+dependencies = [
+    "requests>=2.20.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/muhammadgohar-official/converso-ai-python-library"
+Repository = "https://github.com/muhammadgohar-official/converso-ai-python-library"
