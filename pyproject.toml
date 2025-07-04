@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [project.urls]
-Converso-AI_Telegarm-Channel = https://t.me/conversoai
-Converso-AI_Telegarm-Group = https://t.me/conversoai_chat
+Converso-AI_Telegarm-Channel = "https://t.me/conversoai"
+Converso-AI_Telegarm-Group = "https://t.me/conversoai_chat"
 Converso_AI-API_Docs = "https://conversoai.stylefort.store"
 Repository = "https://github.com/muhammadgohar-official/converso-ai-python-library"
