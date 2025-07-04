@@ -1,6 +1,6 @@
 # Converso AI Python Library
 
-Converso AI - Python Library  is a Python client for interacting with the Converso AI API.
+Converso AI - Python Library is a Python client for interacting with the Converso AI API.
 
 ---
 
@@ -9,12 +9,11 @@ Converso AI - Python Library  is a Python client for interacting with the Conver
 - Retrieve API tokens (requires API key)
 - Generate images from text prompts (requires API key)
 - Fetch previously generated images (requires API key)
+- Generate chat completions (requires API key)
 
 ---
 
 ## 📦 Installation
-
-
 
 ```bash
 pip install converso-ai
@@ -31,31 +30,41 @@ from converso_ai import ConversoAI
 client = ConversoAI(api_key="YOUR_API_KEY")
 ```
 
-### For Get Models
+### Get Available Models
 ```python
-# Get Converso AI All Models
-models = client.get_models()
+models = client.models()
 print(models)
 ```
-### For Get tokens
+
+### Get Tokens
 ```python
-# Get Remaining Tokens
-tokens = client.get_tokens()
+tokens = client.tokens()
 print(tokens)
 ```
 
-### For Generate image
+### Generate Image
 ```python
 # Generate Image
 image_response = client.generate_image(prompt="A futuristic cityscape", model="model-id")
 print(image_response)
 ```
 
-### For Get all generated images
+### Get All Generated Images
 ```python
 # Get All Generated Images
-images = client.get_generated_images()
+images = client.generated_images()
 print(images)
+```
+
+### Generate Chat Completion
+```python
+# Generate a completion
+messages = [
+    {"role": "user", "content": "Hello, who are you?"},
+    # ... more messages ...
+]
+completion_response = client.chat_completion(model="MODEL_ID", messages=messages)
+print(completion_response)
 ```
 
 ---

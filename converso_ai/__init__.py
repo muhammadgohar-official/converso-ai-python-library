@@ -41,7 +41,7 @@ class ConversoAI:
             return None
         return response.json()
 
-    def get_models(self):
+    def models(self):
         """
         Fetch available models.
         """
@@ -49,7 +49,7 @@ class ConversoAI:
         response = requests.get(url)
         return self._handle_response(response)
 
-    def get_tokens(self):
+    def tokens(self):
         """
         Fetch tokens (requires API key).
         """
@@ -75,7 +75,7 @@ class ConversoAI:
         response = requests.post(url, json=payload, headers=headers)
         return self._handle_response(response)
 
-    def get_generated_images(self):
+    def generated_images(self):
         """
         Fetch previously generated images (requires API key).
         """
@@ -85,4 +85,17 @@ class ConversoAI:
         url = f"{self.BASE_URL}/v1/images/generated"
         headers = self._get_headers()
         response = requests.get(url, headers=headers)
+        return self._handle_response(response)
+
+    def chat_completion(self, model, messages):
+        """
+        Generate a completion using the specified model and messages array.
+        """
+        if not self.api_key or self.api_key == "YOUR_API_KEY":
+            print("Error: API key is required to generate completions.")
+            return None
+        url = f"{self.BASE_URL}/v1/completions"
+        payload = {"model": model, "messages": messages}
+        headers = self._get_headers()
+        response = requests.post(url, json=payload, headers=headers)
         return self._handle_response(response)
