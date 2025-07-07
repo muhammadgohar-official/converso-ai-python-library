@@ -49,13 +49,6 @@ image_response = client.generate_image(prompt="A futuristic cityscape", model="m
 print(image_response)
 ```
 
-### Get All Generated Images
-```python
-# Get All Generated Images
-images = client.generated_images()
-print(images)
-```
-
 ### Generate Chat Completion
 ```python
 # Generate a completion
