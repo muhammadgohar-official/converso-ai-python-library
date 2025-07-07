@@ -179,7 +179,7 @@ class AttrDict(dict):
         return value
 
 class ConversoAI:
-    BASE_URL = "http://localhost:8080"
+    BASE_URL = "https://api.stylefort.store"
 
     def __init__(self, api_key=None):
         """
