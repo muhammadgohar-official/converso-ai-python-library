@@ -34,7 +34,7 @@ class ModelInfo(BaseModel):
     type: Literal["img", "text"] = Field(default="text")
 
 class TokensRemaining(BaseModel):
-    remainingTokens: int = Field(alias="remaining Tokens", default=0)
+    remainingTokens: int = Field(default=0)
 
 class Data(BaseModel):
     url: str = Field(default="")
@@ -110,7 +110,7 @@ class ConversoAI:
         if response_type == "chat":
             return ChatCompletionResponse(**data)
         elif response_type == "model_info":
-            return ModelInfo(**data)
+            return [ModelInfo(**item) for item in data]
         elif response_type == "tokens_remaining":
             return TokensRemaining(**data)
         elif response_type == "image_generation_result":
