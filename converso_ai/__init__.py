@@ -45,7 +45,7 @@ class ConversoAI:
         """
         Fetch available models.
         """
-        url = f"{self.BASE_URL}/models"
+        url = f"{self.BASE_URL}/v1/models"
         response = requests.get(url)
         return self._handle_response(response)
 
@@ -94,7 +94,7 @@ class ConversoAI:
         if not self.api_key or self.api_key == "YOUR_API_KEY":
             print("Error: API key is required to generate completions.")
             return None
-        url = f"{self.BASE_URL}/v1/completions"
+        url = f"{self.BASE_URL}/v1/chat/completions"
         payload = {"model": model, "messages": messages}
         headers = self._get_headers()
         response = requests.post(url, json=payload, headers=headers)
