@@ -85,3 +85,7 @@ Official API documentation: [https://conversoai.stylefort.store](https://convers
 ## 📝 License
 
 MIT License. See `LICENSE` file for details.
+
+## Privacy Policy 
+
+Official Privacy Policy: [Open](https://github.com/muhammadgohar-official/converso-ai-python-library/privacy-policy.md)
