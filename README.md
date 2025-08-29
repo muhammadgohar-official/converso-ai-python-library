@@ -10,6 +10,7 @@ Converso AI - Python Library is a Python client for interacting with the Convers
 - Generate images from text prompts (requires API key)
 - Fetch previously generated images (requires API key)
 - Generate chat completions (requires API key)
+- Get responses from specific agents (requires API key)
 
 ---
 
@@ -58,6 +59,13 @@ messages = [
 ]
 completion_response = client.chat_completion(model="MODEL_ID", messages=messages)
 print(completion_response)
+```
+
+### Get Agent Response
+```python
+# Get a response from a specific agent
+agent_response = client.agent_response(agent_id="AGENT_ID", prompt="What is the weather today?")
+print(agent_response)
 ```
 
 ---
