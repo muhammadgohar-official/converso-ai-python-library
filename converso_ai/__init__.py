@@ -178,7 +178,7 @@ class ConversoAI:
             print(f"Error: Failed to fetch tokens. Details: {str(e)}")
             return None
 
-    def generate_image(self, prompt: str, model: str = 'flux.1.1-pro', n: int = 1) -> Optional[ImageGenerationResult]:
+    def generate_image(self, prompt: str, model: str = 'flux.1-dev', n: int = 1) -> Optional[ImageGenerationResult]:
         """
         Generates an image based on a text prompt using a specified model.
 
@@ -187,7 +187,7 @@ class ConversoAI:
         Args:
             prompt (str): The text description for the image to be generated.
             model (str, optional): The name of the image generation model to use.
-                                   Defaults to 'flux.1.1-pro'.
+                                   Defaults to 'flux.1-dev'.
             n (int, optional): The number of images to generate. Defaults to 1.
 
         Returns:
