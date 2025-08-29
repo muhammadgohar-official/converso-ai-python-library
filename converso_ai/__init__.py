@@ -1,5 +1,4 @@
 from typing import List, Optional, Literal, Any
-from datetime import datetime
 from pydantic import BaseModel, Field, ConfigDict
 import requests
 
@@ -46,6 +45,9 @@ class ImageGenerationResult(BaseModel):
     type: Literal["img", "text"] = Field(default="img")
     data: List[Data] = Field(default_factory=list)
 
+class AgentResponse(BaseModel):
+    agent_id: str = Field(default="")
+    choices: List[Choice] = Field(default_factory=list)
 
 class AttrDict(dict):
     """
@@ -102,20 +104,41 @@ class ConversoAI:
     def _handle_response(self, response, response_type=None):
         """
         Improved response handler for API requests.
+        Handles different response types and provides more robust error reporting.
         """
-        if response.status_code != 200:
-            print(f"Error: {response.text}")
+        try:
+            response.raise_for_status()  # Raise an exception for bad status codes (4xx or 5xx)
+            data = response.json()
+            if response_type == "chat":
+                return ChatCompletionResponse(**data)
+            elif response_type == "model_info":
+                return [ModelInfo(**item) for item in data]
+            elif response_type == "tokens_remaining":
+                return TokensRemaining(**data)
+            elif response_type == "image_generation_result":
+                return ImageGenerationResult(**data)
+            elif response_type == "agent_response":
+                return AgentResponse(**data)
+            return AttrDict(data)
+        except requests.exceptions.HTTPError as http_err:
+            print(f"HTTP error occurred: {http_err} - {response.text}")
             return None
-        data = response.json()
-        if response_type == "chat":
-            return ChatCompletionResponse(**data)
-        elif response_type == "model_info":
-            return [ModelInfo(**item) for item in data]
-        elif response_type == "tokens_remaining":
-            return TokensRemaining(**data)
-        elif response_type == "image_generation_result":
-            return ImageGenerationResult(**data)
-        return AttrDict(data)
+        except requests.exceptions.ConnectionError as conn_err:
+            print(f"Connection error occurred: {conn_err}")
+            return None
+        except requests.exceptions.Timeout as timeout_err:
+            print(f"Timeout error occurred: {timeout_err}")
+            return None
+        except requests.exceptions.RequestException as req_err:
+            print(f"An unexpected error occurred during the request: {req_err}")
+            return None
+        except ValueError as val_err: # Includes JSONDecodeError
+            print(f"Error decoding JSON response: {val_err} - Response: {response.text}")
+            return None
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+            return None
+
 
     def models(self) -> Optional[List[ModelInfo]]:
         """
@@ -126,8 +149,12 @@ class ConversoAI:
                                        otherwise None.
         """
         url = f"{self.BASE_URL}/v1/models"
-        response = requests.get(url)
-        return self._handle_response(response, response_type="model_info")
+        try:
+            response = requests.get(url)
+            return self._handle_response(response, response_type="model_info")
+        except requests.RequestException as e:
+            print(f"Error: Failed to fetch models. Details: {str(e)}")
+            return None
 
     def tokens(self) -> Optional[TokensRemaining]:
         """
@@ -144,8 +171,12 @@ class ConversoAI:
             return None
         url = f"{self.BASE_URL}/tokens"
         headers = self._get_headers()
-        response = requests.get(url, headers=headers)
-        return self._handle_response(response, response_type="tokens_remaining")
+        try:
+            response = requests.get(url, headers=headers)
+            return self._handle_response(response, response_type="tokens_remaining")
+        except requests.RequestException as e:
+            print(f"Error: Failed to fetch tokens. Details: {str(e)}")
+            return None
 
     def generate_image(self, prompt: str, model: str = 'flux.1.1-pro', n: int = 1) -> Optional[ImageGenerationResult]:
         """
@@ -170,8 +201,12 @@ class ConversoAI:
         payload = {"prompt": prompt, "model": model, "n": n}
         headers = self._get_headers()
         print(f"Generating image...")
-        response = requests.post(url, json=payload, headers=headers)
-        return self._handle_response(response, response_type="image_generation_result")
+        try:
+            response = requests.post(url, json=payload, headers=headers)
+            return self._handle_response(response, response_type="image_generation_result")
+        except requests.RequestException as e:
+            print(f"Error: Failed to generate image. Details: {str(e)}")
+            return None
 
     def chat_completion(self, model: str, messages: List[Message]) -> Optional[ChatCompletionResponse]:
         """
@@ -194,5 +229,38 @@ class ConversoAI:
         url = f"{self.BASE_URL}/v1/chat/completions"
         payload = {"model": model, "messages": messages}
         headers = self._get_headers()
-        response = requests.post(url, json=payload, headers=headers)
-        return self._handle_response(response, response_type="chat")
+        try:
+            response = requests.post(url, json=payload, headers=headers)
+            return self._handle_response(response, response_type="chat")
+        except requests.RequestException as e:
+            print(f"Error: Failed to get chat completion. Details: {str(e)}")
+            return None
+    
+    def agent_response(self, agent_id: str, prompt: str) -> Optional[AgentResponse]:
+        """
+        Fetches a response from a specific agent using the provided prompt.
+
+        Requires an API key to be set during client initialization.
+
+        Args:
+            agent_id (str): The unique identifier of the agent to query.
+            prompt (str): The input prompt to send to the agent.
+
+        Returns:
+            Optional[AgentResponse]: An object containing the agent's response
+                                     if successful, otherwise None.
+        """
+        if not self.api_key or self.api_key == "YOUR_API_KEY":
+            print("Error: API key is required to fetch agent responses.")
+            return None
+        
+        url = f"{self.BASE_URL}/v1/agents/{agent_id}/responses"
+        headers = self._get_headers()
+        payload = {"prompt": prompt}
+        
+        try:
+            response = requests.post(url, headers=headers, json=payload)
+            return self._handle_response(response, response_type="agent_response")
+        except requests.RequestException as e:
+            print(f"Error: Failed to get response from agent {agent_id}. Details: {str(e)}")
+            return None
