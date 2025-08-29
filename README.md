@@ -1,20 +1,23 @@
-# Converso AI Python Library
+# 🤖 Converso AI Python Library
 
-Converso AI - Python Library is a Python client for interacting with the Converso AI API.
+A lightweight and powerful **Python client** for interacting with the [Converso AI API](https://conversoai.stylefort.store).  
+Easily integrate AI models, generate images, retrieve tokens, chat with agents, and more — all with just a few lines of code.  
 
 ---
 
 ## 🚀 Features
-- Fetch available models
-- Retrieve API tokens (requires API key)
-- Generate images from text prompts (requires API key)
-- Fetch previously generated images (requires API key)
-- Generate chat completions (requires API key)
-- Get responses from specific agents (requires API key)
+- 🔍 Fetch available AI models *(no API key required)*
+- 🔑 Retrieve API tokens *(requires API key)*
+- 🖼 Generate images from text prompts *(requires API key)*
+- 📂 Access previously generated images *(requires API key)*
+- 💬 Generate chat completions *(requires API key)*
+- 👤 Get responses from specific agents *(requires API key)*
 
 ---
 
 ## 📦 Installation
+
+Install directly from [PyPI](https://pypi.org/project/converso-ai/):
 
 ```bash
 pip install converso-ai
@@ -22,7 +25,7 @@ pip install converso-ai
 
 ---
 
-## 💻 Example Usage
+## ⚡ Quick Start
 
 ```python
 from converso_ai import ConversoAI
@@ -31,69 +34,106 @@ from converso_ai import ConversoAI
 client = ConversoAI(api_key="YOUR_API_KEY")
 ```
 
-### Get Available Models
+---
+
+## 💻 Usage Examples
+
+### 🔍 Get Available Models
+
 ```python
 models = client.models()
 print(models)
 ```
 
-### Get Tokens
+### 🔑 Retrieve Tokens
+
 ```python
 tokens = client.tokens()
 print(tokens)
 ```
 
-### Generate Image
+### 🖼 Generate an Image
+
 ```python
-# Generate Image
-image_response = client.generate_image(prompt="A futuristic cityscape", model="model-id")
-print(image_response)
+image = client.generate_image(
+    prompt="A futuristic cityscape",
+    model="flux.1-dev"
+)
+print(image)
 ```
 
-### Generate Chat Completion
+### 💬 Generate Chat Completion
+
 ```python
-# Generate a completion
 messages = [
-    {"role": "user", "content": "Hello, who are you?"},
-    # ... more messages ...
+    {"role": "user", "content": "Hello, who are you?"}
 ]
-completion_response = client.chat_completion(model="MODEL_ID", messages=messages)
-print(completion_response)
+completion = client.chat_completion(
+    model="gemini-2.5-flash",
+    messages=messages
+)
+print(completion)
 ```
 
-### Get Agent Response
+### 👤 Get Agent Response
+
 ```python
-# Get a response from a specific agent
-agent_response = client.agent_response(agent_id="AGENT_ID", prompt="What is the weather today?")
-print(agent_response)
+response = client.agent_response(
+    agent_id="AGENT_ID",
+    prompt="What is the weather today?"
+)
+print(response)
 ```
 
 ---
 
-## ⚙ Project Structure
+## 📂 Project Structure
 
 ```
-converso_ai/
+converso-ai/
 ├── converso_ai/
-│   └── __init__.py        # Library code
-├── pyproject.toml         # Package config
-├── requirements.txt       # Dependencies
-├── README.md              # This file
-└── LICENSE                # License file (optional)
+│   └── __init__.py      # Core library code
+├── pyproject.toml       # Build & metadata
+├── requirements.txt     # Dependencies
+├── README.md            # Documentation
+└── LICENSE              # License
 ```
 
 ---
 
-## 📖 API Docs
+## 📖 Documentation
 
-Official API documentation: [https://conversoai.stylefort.store](https://conversoai.stylefort.store)
+Full API docs: [Converso AI Docs](https://conversoai.stylefort.store)
 
 ---
 
 ## 📝 License
 
-MIT License. See `LICENSE` file for details.
+This project is licensed under the **MIT License**.
+See the [LICENSE](./LICENSE) file for details.
 
-## Privacy Policy 
+---
 
-Official Privacy Policy: [Open](https://github.com/muhammadgohar-official/converso-ai-python-library/privacy-policy.md)
+## 🔒 Privacy Policy
+
+Read our Privacy Policy here: [Privacy Policy](https://conversoai.stylefort.store/privacy-policy)
+
+---
+
+## ⭐ Contributing
+
+Contributions are welcome!
+
+* Fork the repo
+* Create a feature branch
+* Submit a pull request
+
+Help us make **Converso AI Python Library** even better 🚀
+
+---
+
+## ⚡ Quick Links
+
+* 📦 PyPI: [Converso AI](https://pypi.org/project/converso-ai/)
+* 📚 Docs: [API Documentation](https://conversoai.stylefort.store)
+* 🛠 Source: [GitHub Repository](https://github.com/muhammadgohar-official/converso-ai-python-library)
