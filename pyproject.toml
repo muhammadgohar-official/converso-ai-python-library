@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "converso-ai"
-version = "1.0.6"
+version = "1.0.7"
 description = "Python client for Converso AI API"
 readme = "README.md"
 license = { text = "MIT" }

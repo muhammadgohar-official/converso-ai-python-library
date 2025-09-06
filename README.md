@@ -1,6 +1,6 @@
 # 🤖 Converso AI Python Library
 
-A lightweight and powerful **Python client** for interacting with the [Converso AI API](https://conversoai.stylefort.store).  
+A lightweight and powerful **Python client** for interacting with the [Converso AI API](https://ai.conversoempire.world/).  
 Easily integrate AI models, generate images, retrieve tokens, chat with agents, and more — all with just a few lines of code.  
 
 ---
@@ -103,7 +103,7 @@ converso-ai/
 
 ## 📖 Documentation
 
-Full API docs: [Converso AI Docs](https://conversoai.stylefort.store)
+Full API docs: [Converso AI Docs](https://ai.conversoempire.world/)
 
 ---
 
@@ -116,7 +116,7 @@ See the [LICENSE](./LICENSE) file for details.
 
 ## 🔒 Privacy Policy
 
-Read our Privacy Policy here: [Privacy Policy](https://conversoai.stylefort.store/privacy-policy)
+Read our Privacy Policy here: [Privacy Policy](https://ai.conversoempire.world/privacy-policy)
 
 ---
 
@@ -135,5 +135,5 @@ Help us make **Converso AI Python Library** even better 🚀
 ## ⚡ Quick Links
 
 * 📦 PyPI: [Converso AI](https://pypi.org/project/converso-ai/)
-* 📚 Docs: [API Documentation](https://conversoai.stylefort.store)
+* 📚 Docs: [API Documentation](https://ai.conversoempire.world/)
 * 🛠 Source: [GitHub Repository](https://github.com/muhammadgohar-official/converso-ai-python-library)
